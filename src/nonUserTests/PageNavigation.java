@@ -1,4 +1,4 @@
-package Main;
+package nonUserTests;
 
 import static org.junit.Assert.*;
 
@@ -17,8 +17,8 @@ public class PageNavigation {
 	public void navigationCheck() throws InterruptedException {
 		System.setProperty("webdriver.gecko.driver", "C:\\geckoDriver\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
+		WebDriverWait wait = new WebDriverWait(driver, 5);
 		
-		String loginBtn = "//*/ul/a[@href='/developers/sign_in']";
 		String jobsTab = "//*/a[@href='/jobsamples']";
 		String employersTab = "//*/a[@href='/pages/pricing']";
 		String jobsSection = "//*/div[@class='job-samples-page']";
@@ -29,10 +29,6 @@ public class PageNavigation {
 		String loginText = "//*/div[@class='login-form']/h4";
 		
 	//landing page
-		driver.get("https://www.findmyflock.com/");
-	    WebDriverWait wait = new WebDriverWait(driver, 5);
-	    WebElement login = driver.findElement(By.xpath(loginBtn));
-		wait.until(ExpectedConditions.elementToBeClickable(login));
 		WebElement jobs = driver.findElement(By.xpath(jobsTab));
 		jobs.click();
 	//jobs page

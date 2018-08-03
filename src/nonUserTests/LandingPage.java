@@ -1,4 +1,4 @@
-package Main;
+package nonUserTests;
 
 import static org.junit.Assert.*;
 
@@ -31,7 +31,7 @@ public void landingPageTest() throws InterruptedException {
 	    WebElement login = driver.findElement(By.xpath(loginBtn));
 		wait.until(ExpectedConditions.elementToBeClickable(login));
 	
-	//verify nav bar elemetns
+	//verify nav bar elements
 	    WebElement homeLogo = driver.findElement(By.xpath(home));
 	    assertTrue((homeLogo.isDisplayed())); 
 	    WebElement mainNav = driver.findElement(By.xpath(navigation));
@@ -50,8 +50,8 @@ public void landingPageTest() throws InterruptedException {
 	    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", footer);
 	// verify bottom links
 	    int social = driver.findElements(By.xpath(footerBar)).size();
-	    assertTrue(social == 6);
-	    driver.close();  
+	    assertTrue(social == 6); 
+	    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", home);
 	}
 
 }
