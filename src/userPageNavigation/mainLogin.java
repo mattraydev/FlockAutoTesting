@@ -16,8 +16,8 @@ public class mainLogin {
 	public void landingPageTest() throws InterruptedException {
 
 		//remove before committing !!!!!!!!!!!!!!!
-		String accountEmail = "mattray.dev@gmail.com";
-		String accountPassword = "Yohsi39Smash";
+		String accountEmail = "";
+		String accountPassword = "";
 		
 		String loginHomeBtn = "//*/div//ul/a[2]";
 		String loginForm = "//*/div[@class='login-form']";
