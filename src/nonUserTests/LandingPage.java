@@ -36,7 +36,7 @@ public void landingPageTest() throws InterruptedException {
 	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", homePage.socialIcons(driver));
 	assertTrue((homePage.socialIcons(driver).isDisplayed()));
 	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", homePage.jobs(driver));
-	homePage.jobs(driver).click();
+	driver.close();
 	}
 
 }

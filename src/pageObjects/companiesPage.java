@@ -33,7 +33,7 @@ public class companiesPage {
 	}
 
 	public static WebElement modalClose(WebDriver driver) {
-		element = driver.findElement(By.xpath("//*/button[@class='close']"));
+		element = driver.findElement(By.xpath("//*/button[@class='close']/span"));
 		return element;
 	}
 }

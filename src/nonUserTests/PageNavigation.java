@@ -2,12 +2,17 @@ package nonUserTests;
 
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
+
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.companiesPage;
+import pageObjects.developersSignin;
 import pageObjects.homePage;
 import pageObjects.jobSamplesPage;
 
@@ -17,44 +22,42 @@ public class PageNavigation {
 	public void navigationCheck() throws InterruptedException {
 		System.setProperty("webdriver.gecko.driver", "C:\\geckoDriver\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
+		//driver.manage().window().maximize();
 		WebDriverWait wait = new WebDriverWait(driver, 5);
-		
+		driver.get("https://www.findmyflock.com/");
+		wait.until(ExpectedConditions.elementToBeClickable(homePage.jobs(driver)));
+		homePage.jobs(driver).click();
+//jobs page		
 		wait.until(ExpectedConditions.elementToBeClickable(homePage.homeLogo(driver)));
 		assertTrue((homePage.homeLogo(driver).isDisplayed())); 
 		assertTrue((homePage.jobs(driver).isDisplayed()));
 		assertTrue((homePage.jobSeekers(driver).isDisplayed()));
 		assertTrue((homePage.companies(driver).isDisplayed()));
 		assertTrue((jobSamplesPage.jobSample(driver).size() > 1));
-
-
-	/*
+		homePage.companies(driver).click();
+//companies page
+		wait.until(ExpectedConditions.elementToBeClickable(homePage.homeLogo(driver)));
+		wait.until(ExpectedConditions.elementToBeClickable(companiesPage.recruiterLogin(driver)));
 		
-		navEmployers.click();
-	//employers tab
-		WebElement navDevelopers = driver.findElement(By.xpath(developersTab));
-		wait.until(ExpectedConditions.elementToBeClickable(navDevelopers));
-		WebElement employersBody = driver.findElement(By.xpath(employersSection));
-		assertTrue((employersBody.isDisplayed()));
-		navDevelopers.click();
-	//developersTab
-		WebElement navHome =  driver.findElement(By.xpath(homeTab));
-		wait.until(ExpectedConditions.elementToBeClickable(navHome));
-		String loginMessage = driver.findElement(By.xpath(loginText)).getText();
-		System.out.println(loginMessage);
-		assertEquals(loginMessage, "LOG IN TO YOUR ACCOUNT");
-		WebElement signUpDev = driver.findElement(By.xpath(devSignUp));
-		signUpDev.click();
-		String signupMessage = driver.findElement(By.xpath(loginText)).getText();
-		System.out.println(signupMessage);
-		assertEquals(signupMessage, "CREATE YOUR ACCOUNT");
-		//new WebDriverWait(driver, 10).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath(homeTab)));
-		//improve this later!?!
-		WebElement navHome2 =  driver.findElement(By.xpath(homeTab));
-		navHome2.click();
-	//home page
+		Iterator<WebElement> iter = companiesPage.recruiterSignup(driver).iterator();
+		while(iter.hasNext()) {
+		    WebElement we = iter.next();
+		    wait.until(ExpectedConditions.elementToBeClickable(we));
+		}
+		assertTrue((companiesPage.contactModal(driver).isDisplayed())); 
+		companiesPage.contactModal(driver).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable(companiesPage.contactLink(driver)));
+		companiesPage.modalClose(driver).click();
+		Thread.sleep(3000); // fix this later, animation time need to finish
+		wait.until(ExpectedConditions.elementToBeClickable(homePage.jobSeekers(driver)));
+		homePage.jobSeekers(driver).click();
+//job seekers page
+		assertTrue((developersSignin.signinBox(driver).isDisplayed()));
+		wait.until(ExpectedConditions.elementToBeClickable(companiesPage.recruiterLogin(driver)));
+		developersSignin.developerSignup(driver).click();
+		wait.until(ExpectedConditions.elementToBeClickable(developersSignin.recruiterSignUp(driver)));
+		homePage.homeLogo(driver).click();
 		driver.close();  
-		
-		
-	*/
 	}
 }
