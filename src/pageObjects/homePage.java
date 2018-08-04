@@ -12,7 +12,7 @@ public class homePage {
 	
 //logo
 	public static WebElement homeLogo(WebDriver driver){
-	    element = driver.findElement(By.id("logo"));
+	    element = driver.findElement(By.id("Logo"));
 	    return element;
 	}
 //nav jobs

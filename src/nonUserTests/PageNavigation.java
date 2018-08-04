@@ -3,13 +3,13 @@ package nonUserTests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.openqa.selenium.By;
-//import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import pageObjects.homePage;
+import pageObjects.jobSamplesPage;
 
 public class PageNavigation {
 
@@ -19,23 +19,16 @@ public class PageNavigation {
 		WebDriver driver = new FirefoxDriver();
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		
-		String jobsTab = "//*/a[@href='/jobsamples']";
-		String employersTab = "//*/a[@href='/pages/pricing']";
-		String jobsSection = "//*/div[@class='job-samples-page']";
-		String developersTab = "//*/a[@href='/developers/sign_in']";
-		String employersSection = "//*/main/div[@class='container']";
-		String homeTab = "//*[@id='NavContent']/a[@href='/']";
-		String devSignUp = "//*/main/*//a[@href='/developers/sign_up']";
-		String loginText = "//*/div[@class='login-form']/h4";
+		wait.until(ExpectedConditions.elementToBeClickable(homePage.homeLogo(driver)));
+		assertTrue((homePage.homeLogo(driver).isDisplayed())); 
+		assertTrue((homePage.jobs(driver).isDisplayed()));
+		assertTrue((homePage.jobSeekers(driver).isDisplayed()));
+		assertTrue((homePage.companies(driver).isDisplayed()));
+		assertTrue((jobSamplesPage.jobSample(driver).size() > 1));
+
+
+	/*
 		
-	//landing page
-		WebElement jobs = driver.findElement(By.xpath(jobsTab));
-		jobs.click();
-	//jobs page
-		WebElement navEmployers = driver.findElement(By.xpath(employersTab));
-		wait.until(ExpectedConditions.elementToBeClickable(navEmployers));
-		WebElement jobsPageBody = driver.findElement(By.xpath(jobsSection));
-		assertTrue((jobsPageBody.isDisplayed()));
 		navEmployers.click();
 	//employers tab
 		WebElement navDevelopers = driver.findElement(By.xpath(developersTab));
@@ -60,5 +53,8 @@ public class PageNavigation {
 		navHome2.click();
 	//home page
 		driver.close();  
+		
+		
+	*/
 	}
 }
