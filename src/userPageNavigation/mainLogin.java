@@ -1,52 +1,51 @@
 package userPageNavigation;
 
-import static org.junit.Assert.assertTrue;
+import org.testng.annotations.Test;
 
-import org.junit.Test;
-import org.openqa.selenium.By;
+import static org.testng.Assert.assertTrue;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class mainLogin {
-@Test
-	
-	public void landingPageTest() throws InterruptedException {
+import pageObjects.developersSignin;
+import pageObjects.homePage;
+import pageObjects.userDashboard;
+import utility.constant;
 
-		//remove before committing !!!!!!!!!!!!!!!
-		String accountEmail = "";
-		String accountPassword = "";
-		
-		String loginHomeBtn = "//*/div//ul/a[2]";
-		String loginForm = "//*/div[@class='login-form']";
-		String emailInput ="//*/input[@type='email']";
-		String passwordInput = "//*/input[@type='password']";
-		String loginBtn = "//*/input[@type='submit']";
+
+public class mainLogin {
+	public static WebDriver driver;
+	public static WebDriverWait wait;
+	
+	
+	@Test
+	public void userLogin() throws InterruptedException {
 		
 		System.setProperty("webdriver.gecko.driver", "C:\\geckoDriver\\geckodriver.exe");
-	    WebDriver driver = new FirefoxDriver();
-	    WebDriverWait wait = new WebDriverWait(driver, 5);
-	    driver.get("https://www.findmyflock.com/");
+	    driver = new FirefoxDriver();
+	    wait = new WebDriverWait(driver, 5);
+	    driver.get(constant.url);
 	    
-	    WebElement header = driver.findElement(By.xpath(loginHomeBtn));
-	    wait.until(ExpectedConditions.elementToBeClickable(header));
-	    assertTrue((header.isDisplayed())); 
-	    header.click();
-	    
-	    WebElement logForm = driver.findElement(By.xpath(loginForm));
-	    assertTrue((logForm.isDisplayed()));
-	    WebElement email = driver.findElement(By.xpath(emailInput));
-	    email.click();
-	    email.sendKeys(accountEmail);
-	    WebElement password = driver.findElement(By.xpath(passwordInput));
-	    password.click();
-	    password.sendKeys(accountPassword);
-	    WebElement submit = driver.findElement(By.xpath(loginBtn));
-	    submit.click();
-	    Thread.sleep(5000);
-	    driver.close();  
+	    wait.until(ExpectedConditions.elementToBeClickable(homePage.loginButton(driver)));
+	    homePage.loginButton(driver).click();
+	    wait.until(ExpectedConditions.elementToBeClickable(developersSignin.emailInput(driver)));
+	    developersSignin.emailInput(driver).click();
+	    developersSignin.emailInput(driver).sendKeys(constant.accountEmail);
+	    developersSignin.passwordInput(driver).click();
+	    developersSignin.passwordInput(driver).sendKeys(constant.accountPassword);
+	    developersSignin.signinSubmit(driver).click();  
 	}
+
+	@Test (dependsOnMethods= {"userLogin"})
+	public void userDashboard() throws InterruptedException {
+		wait.until(ExpectedConditions.elementToBeClickable(userDashboard.dashboardLink(driver)));
+		assertTrue((userDashboard.dashboardLink(driver).isDisplayed())); 
+		//System.out.println("test");
+		driver.close();
+		
+	}
+	
 
 }

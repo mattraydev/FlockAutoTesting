@@ -1,19 +1,19 @@
 package nonUserTests;
 
-import static org.junit.Assert.*;
 
-import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
-import org.openqa.selenium.By;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertTrue;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pageObjects.homePage;
+import utility.constant;
 
 public class LandingPage {
 
@@ -23,7 +23,7 @@ public void landingPageTest() throws InterruptedException {
 	WebDriver driver = new FirefoxDriver();
 	//driver.manage().window().maximize();
 	WebDriverWait wait = new WebDriverWait(driver, 5);
-	driver.get("https://www.findmyflock.com/");
+	driver.get(constant.url);
 	
 	wait.until(ExpectedConditions.elementToBeClickable(homePage.homeLogo(driver)));
 	assertTrue((homePage.homeLogo(driver).isDisplayed())); 

@@ -22,5 +22,19 @@ public class developersSignin {
 		return element;
 	}
 	
+	public static WebElement emailInput(WebDriver driver) {
+		element = driver.findElement(By.id("developer_email"));
+		return element;
+	}
+	
+	public static WebElement passwordInput(WebDriver driver) {
+		element = driver.findElement(By.id("developer_password"));
+		return element;
+	}
+	
+	public static WebElement signinSubmit(WebDriver driver) {
+		element = driver.findElement(By.xpath("//*/input[@type='submit']"));
+		return element;
+	}
 	
 }

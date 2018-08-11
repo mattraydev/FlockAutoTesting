@@ -1,10 +1,10 @@
 package nonUserTests;
 
-import static org.junit.Assert.*;
+
 
 import java.util.Iterator;
-
-import org.junit.Test;
+import org.testng.annotations.Test;
+import static org.testng.Assert.assertTrue;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
