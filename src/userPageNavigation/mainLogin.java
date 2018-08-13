@@ -1,11 +1,8 @@
 package userPageNavigation;
 
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.assertTrue;
-
 import java.util.Iterator;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -17,7 +14,6 @@ import pageObjects.homePage;
 import pageObjects.userDashboard;
 import pageObjects.applicationsPage;
 import utility.constant;
-
 
 public class mainLogin {
 	public static WebDriver driver;
@@ -70,12 +66,17 @@ public class mainLogin {
 	@Test (dependsOnMethods= {"userDashboard"})
 	public void jobExample() throws InterruptedException {
 		assertTrue((applicationsPage.applicationForm(driver).isDisplayed()));
-		
-		
-		
-		driver.close();
-		
+		wait.until(ExpectedConditions.elementToBeClickable(applicationsPage.uploadButton(driver)));
+		wait.until(ExpectedConditions.elementToBeClickable(applicationsPage.sendApplicationButton(driver)));
+		applicationsPage.backButton(driver).click();
 	}
 	
-
+	@Test (dependsOnMethods= {"jobExample"})
+	public void logout() throws InterruptedException {
+		wait.until(ExpectedConditions.elementToBeClickable(userDashboard.userSettings(driver)));
+		userDashboard.userSettings(driver).click();
+		wait.until(ExpectedConditions.elementToBeClickable(userDashboard.logoutButton(driver)));
+		userDashboard.logoutButton(driver).click();
+		driver.close();
+	}
 }

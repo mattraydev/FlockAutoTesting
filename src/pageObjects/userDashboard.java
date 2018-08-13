@@ -65,4 +65,14 @@ public class userDashboard {
 		myInt = Integer.parseInt(first);
 		return myInt;
 	}
+//user settings
+	public static WebElement userSettings(WebDriver driver) {
+		element = driver.findElement(By.id("dropdownMenuButton"));
+		return element;
+	}
+//logout button
+	public static WebElement logoutButton(WebDriver driver) {
+		element = driver.findElement(By.xpath("//*/a[@href='/developers/sign_out']"));
+		return element;
+	}
 }
