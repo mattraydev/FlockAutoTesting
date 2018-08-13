@@ -39,10 +39,10 @@ public class PageNavigation {
 		wait.until(ExpectedConditions.elementToBeClickable(homePage.homeLogo(driver)));
 		wait.until(ExpectedConditions.elementToBeClickable(companiesPage.recruiterLogin(driver)));
 		
-		Iterator<WebElement> iter = companiesPage.recruiterSignup(driver).iterator();
-		while(iter.hasNext()) {
-		    WebElement we = iter.next();
-		    wait.until(ExpectedConditions.elementToBeClickable(we));
+		Iterator<WebElement> iteration = companiesPage.recruiterSignup(driver).iterator();
+		while(iteration.hasNext()) {
+		    WebElement item = iteration.next();
+		    wait.until(ExpectedConditions.elementToBeClickable(item));
 		}
 		assertTrue((companiesPage.contactModal(driver).isDisplayed())); 
 		companiesPage.contactModal(driver).click();
