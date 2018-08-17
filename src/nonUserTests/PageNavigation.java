@@ -1,7 +1,5 @@
 package nonUserTests;
 
-
-
 import java.util.Iterator;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;

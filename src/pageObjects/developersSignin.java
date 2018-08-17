@@ -36,5 +36,4 @@ public class developersSignin {
 		element = driver.findElement(By.xpath("//*/input[@type='submit']"));
 		return element;
 	}
-	
 }

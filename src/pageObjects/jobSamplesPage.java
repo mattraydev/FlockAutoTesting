@@ -13,10 +13,6 @@ public class jobSamplesPage {
 //sample jobs	
 	public static List<WebElement> jobSample(WebDriver driver){
 		myElements = driver.findElements(By.cssSelector("div.job-sample"));
-	    //element = driver.findElement(By.cssSelector("div.job-sample"));
 	    return myElements;
 	}
-	
-	
-	
 }

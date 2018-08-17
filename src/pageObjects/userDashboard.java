@@ -75,4 +75,9 @@ public class userDashboard {
 		element = driver.findElement(By.xpath("//*/a[@href='/developers/sign_out']"));
 		return element;
 	}
+//dev profile
+	public static WebElement devProfile(WebDriver driver) {
+		element = driver.findElement(By.xpath("//*/a[contains(text(), 'My Dev Profile')]"));
+		return element;
+	}
 }

@@ -10,7 +10,6 @@ public class companiesPage {
 	
 	private static WebElement element = null;
 	private static List<WebElement> myElements = null;
-
 //sample jobs	
 	public static WebElement recruiterLogin(WebDriver driver){
 		element = driver.findElement(By.xpath("//*/a[@href='/recruiters/sign_in']"));
@@ -26,12 +25,12 @@ public class companiesPage {
 		element = driver.findElement(By.xpath("//*/button[@data-toggle='modal']"));
 		return element;
 	}
-	
+//vetted companies contact button
 	public static WebElement contactLink(WebDriver driver) {
 		element = driver.findElement(By.xpath("//*/div[@class='modal-body']/a"));
 		return element;
 	}
-
+//x button inside the modal
 	public static WebElement modalClose(WebDriver driver) {
 		element = driver.findElement(By.xpath("//*/button[@class='close']/span"));
 		return element;

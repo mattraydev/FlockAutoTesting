@@ -8,39 +8,37 @@ public class homePage {
 
 	private static WebElement element = null;
 	private static int num = 0;
-	
-	
-//logo
+//flock home logo
 	public static WebElement homeLogo(WebDriver driver){
 	    element = driver.findElement(By.id("Logo"));
 	    return element;
 	}
-//nav jobs
+//navbar jobs tab
 	public static WebElement jobs(WebDriver driver) {
 		element = driver.findElement(By.xpath("//*/a[@href='/jobsamples']"));
 		return element;
 	}
-//nav job seekers
+//navbar job seekers tab
 	public static WebElement jobSeekers(WebDriver driver) {
 		element = driver.findElement(By.xpath("//*/li/a[@href='/developers/sign_in']"));
 		return element;
 	}
-//nav companies
+//navbar companies tab
 	public static WebElement companies(WebDriver driver) {
 		element = driver.findElement(By.xpath("//*/a[@href='/pages/pricing']"));
 		return element;
 	}
-//join
+//join button in middle
 	public static WebElement joinButton(WebDriver driver) {
 		element = driver.findElement(By.xpath("//*/ul/a[@href='/developers/sign_up']"));
 		return element;
 	}
-//login
+//login button in middle
 	public static WebElement loginButton(WebDriver driver) {
 		element = driver.findElement(By.xpath("//*/ul/a[@href='/developers/sign_in']"));
 		return element;
 	}
-//bottom section
+//bottom body section
 	public static int homepageBodySections(WebDriver driver) {
 		num = driver.findElements(By.xpath("//*/main/div")).size();
 		return num;
@@ -49,5 +47,5 @@ public class homePage {
 	public static WebElement socialIcons(WebDriver driver) {
 		element = driver.findElement(By.xpath("//*/a[@class='social-icon']"));
 		return element;
-	} //should return 3 items, for each one iterate and make sure they are clickable
+	}
 }
